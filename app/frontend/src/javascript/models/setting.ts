@@ -118,7 +118,15 @@ export enum SettingName {
   PackOnlyForSubscription = 'pack_only_for_subscription',
   OverlappingCategories = 'overlapping_categories',
   ExtendedPricesInSameDay = 'extended_prices_in_same_day',
-  PublicRegistrations = 'public_registrations'
+  PublicRegistrations = 'public_registrations',
+  UserValidationRequired = 'user_validation_required',
+  UserValidationRequiredMatchine = 'user_validation_required_machine',
+  UserValidationRequiredTraining = 'user_validation_required_training',
+  UserValidationRequiredSubscription = 'user_validation_required_subscription',
+  UserValidationRequiredEvent = 'user_validation_required_event',
+  UserValidationRequiredSpace = 'user_validation_required_space',
+  UserValidationRequiredPack = 'user_validation_required_pack',
+  UserValidationRequiredList = 'user_validation_required_list',
 }
 
 export type SettingValue = string|boolean|number;

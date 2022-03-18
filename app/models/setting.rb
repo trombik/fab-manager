@@ -130,7 +130,15 @@ class Setting < ApplicationRecord
                              extended_prices_in_same_day
                              public_registrations
                              accounting_Pack_code
-                             accounting_Pack_label] }
+                             accounting_Pack_label
+                             user_validation_required
+                             user_validation_required_list
+                             user_validation_required_machine
+                             user_validation_required_training
+                             user_validation_required_subscription
+                             user_validation_required_event
+                             user_validation_required_space
+                             user_validation_required_pack] }
   # WARNING: when adding a new key, you may also want to add it in:
   # - config/locales/en.yml#settings
   # - app/frontend/src/javascript/models/setting.ts#SettingName
