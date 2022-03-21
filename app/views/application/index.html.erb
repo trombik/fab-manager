@@ -29,6 +29,18 @@
     <% end %>
   <% end %>
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <% if Setting.set?('tracking_id') %>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= Setting.get('tracking_id') %>"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', <%= Setting.get('tracking_id') %>);
+    </script>
+  <% end %>
+
   <script type="text/javascript">
       var Fablab = Fablab || {};
 
@@ -39,7 +51,6 @@
       Fablab.publicAgendaModule = ('<%= Setting.get('public_agenda_module') %>' === 'true');
       Fablab.statisticsModule = ('<%= Setting.get('statistics_module') %>' === 'true');
       Fablab.defaultHost = "<%= Rails.application.secrets.default_host %>";
-      Fablab.trackingId = "<%= Setting.get('tracking_id') %>";
       Fablab.adminSysId = parseInt("<%= User.adminsys&.id %>", 10);
       Fablab.baseHostUrl = "<%= Rails.application.secrets.default_host %>";
 
