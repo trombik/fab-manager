@@ -1347,6 +1347,8 @@ pt:
           statistics: "Estatísticas"
           statistics_info_html: "<p>Ativar ou desativar módulo de estatísticas.</p><p>Se ativado, todas as noites, os dados do dia que acabou de ser passado serão consolidados na base de dados de um poderoso motor de análise. Então, todos os administradores poderão navegar em gráficos estatísticos e tabelas na seção correspondente.</p>"
           enable_statistics: "Habilitar estatísticas"
+        compte:
+          compte: "Compte"
         home:
           show_upcoming_events: "Mostrar próximos eventos"
           upcoming_events:

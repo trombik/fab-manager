@@ -1347,6 +1347,8 @@ zu:
           statistics: "crwdns20866:0crwdne20866:0"
           statistics_info_html: "crwdns20868:0crwdne20868:0"
           enable_statistics: "crwdns20870:0crwdne20870:0"
+        compte:
+          compte: "Compte"
         home:
           show_upcoming_events: "crwdns20900:0crwdne20900:0"
           upcoming_events:

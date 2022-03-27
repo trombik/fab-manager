@@ -26,7 +26,7 @@ const UserValidationSetting: React.FC<UserValidationSettingProps> = ({ onSuccess
   const userValidationRequiredListDefault = ['subscription', 'machine', 'event', 'space', 'training', 'pack'];
   const [userValidationRequiredList, setUserValidationRequiredList] = useState<string>(null);
   const userValidationRequiredOptions = userValidationRequiredListDefault.map(l => {
-    return [l, t(`app.admin.settings.${l}`)];
+    return [l, t(`app.admin.settings.compte.user_validation_required_list.${l}`)];
   });
 
   /**

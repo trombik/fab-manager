@@ -1347,6 +1347,8 @@ es:
           statistics: "Statistics"
           statistics_info_html: "<p>Enable or disable the statistics module.</p><p>If enabled, every nights, the data of the day just passed will be consolidated in the database of a powerful analysis engine. Then, every administrators will be able to browse statistical charts and tables in the corresponding section.</p>"
           enable_statistics: "Enable statistics"
+        compte:
+          compte: "Compte"
         home:
           show_upcoming_events: "Show upcoming events"
           upcoming_events:

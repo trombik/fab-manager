@@ -1347,6 +1347,8 @@ de:
           statistics: "Statistiken"
           statistics_info_html: "<p>Aktivieren oder deaktivieren Sie das Statistik-Modul.</p><p>Wenn aktiviert, konsolidiert das Modul die Tagesdaten in der Datenbank einer leistungsstarken Analyse-Engine. Administratoren können im entsprechenden Abschnitt die erstellten Diagramme und Tabellen durchsuchen.</p>"
           enable_statistics: "Statistik-Modul aktivieren"
+        compte:
+          compte: "Compte"
         home:
           show_upcoming_events: "Anstehende Veranstaltungen anzeigen"
           upcoming_events:
