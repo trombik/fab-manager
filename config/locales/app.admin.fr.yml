@@ -1349,6 +1349,19 @@ fr:
           enable_statistics: "Activer les statistiques"
         compte:
           compte: "Compte"
+          user_validation_required_title: "Validation des comptes"
+          user_validation_required_info: "En activant cette option, seuls les membres dont le compte est validé par un administrateur ou un gestionnaire pourront effectuer des réservations."
+          user_validation_required_option_label: "Activer l'option validation des comptes"
+          user_validation_required_list_title: "Message d'information de la validation du compte membre"
+          user_validation_required_list_info: "Votre administrateur doit valider votre compte ? Vous pourrez alors accéder à l'ensemble des fonctionnalités de réservation."
+          user_validation_required_list_other_info: "Les ressources sélectionnées ci-dessous seront assujetties à la validation du compte membre."
+          user_validation_required_list:
+            subscription: "Abonnements"
+            machine: "Machines"
+            event: "Événement"
+            space: "Espaces"
+            training: "Formations"
+            pack: "Achat pack d'heure"
         home:
           show_upcoming_events: "Afficher les prochains événements"
           upcoming_events:

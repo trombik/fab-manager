@@ -65,24 +65,33 @@ const UserValidationSetting: React.FC<UserValidationSettingProps> = ({ onSuccess
   return (
     <div className="user-validation-setting">
       <BooleanSetting name={SettingName.UserValidationRequired}
-        label={t('app.admin.settings.user_validation_required')}
+        label={t('app.admin.settings.compte.user_validation_required_option_label')}
         hideSave={true}
         onChange={setUserValidationRequired}
         onSuccess={onSuccess}
         onError={onError}>
       </BooleanSetting>
       {userValidationRequired === 'true' &&
-        <CheckListSetting name={SettingName.UserValidationRequiredList}
-          label=""
-          availableOptions={userValidationRequiredOptions}
-          defaultValue={userValidationRequiredListDefault.join(',')}
-          hideSave={true}
-          onChange={setUserValidationRequiredList}
-          onSuccess={onSuccess}
-          onError={onError}>
-        </CheckListSetting>
+        <div>
+          <h4>{t('app.admin.settings.compte.user_validation_required_list_title')}</h4>
+          <p>
+            {t('app.admin.settings.compte.user_validation_required_list_info')}
+          </p>
+          <p className="alert alert-warning">
+            {t('app.admin.settings.compte.user_validation_required_list_other_info')}
+          </p>
+          <CheckListSetting name={SettingName.UserValidationRequiredList}
+            label=""
+            availableOptions={userValidationRequiredOptions}
+            defaultValue={userValidationRequiredListDefault.join(',')}
+            hideSave={true}
+            onChange={setUserValidationRequiredList}
+            onSuccess={onSuccess}
+            onError={onError}>
+          </CheckListSetting>
+        </div>
       }
-      <FabButton className="btn btn-warning" onClick={handleSave}>{t('app.admin.check_list_setting.save')}</FabButton>
+      <FabButton className="btn btn-warning m-t" onClick={handleSave}>{t('app.admin.check_list_setting.save')}</FabButton>
     </div>
   );
 };

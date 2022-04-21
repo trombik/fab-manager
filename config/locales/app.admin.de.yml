@@ -1349,6 +1349,19 @@ de:
           enable_statistics: "Statistik-Modul aktivieren"
         compte:
           compte: "Compte"
+          user_validation_required_title: "Validation of accounts"
+          user_validation_required_info: "By activating this option, only members whose account is validated by an administrator or a manager will be able to make reservations."
+          user_validation_required_option_label: "Activate the account validation option"
+          user_validation_required_list_title: "Member account validation information message"
+          user_validation_required_list_info: "Your administrator must validate your account ? You will then be able to access all the booking features."
+          user_validation_required_list_other_info: "The resources selected below will be subject to member account validation."
+          user_validation_required_list:
+            subscription: "Subscriptions"
+            machine: "Machines"
+            event: "Events"
+            space: "Spaces"
+            training: "Trainings"
+            pack: "Prepaid pack"
         home:
           show_upcoming_events: "Anstehende Veranstaltungen anzeigen"
           upcoming_events:
