@@ -135,6 +135,8 @@ Rails.application.routes.draw do
       post 'sync', on: :member
     end
 
+    resources :proof_of_identity_types
+
     # for admin
     resources :trainings do
       get :availabilities, on: :member

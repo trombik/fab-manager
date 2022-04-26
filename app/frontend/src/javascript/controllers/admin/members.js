@@ -126,8 +126,8 @@ class MembersController {
 /**
  * Controller used in the members/groups management page
  */
-Application.Controllers.controller('AdminMembersController', ['$scope', '$sce', '$uibModal', 'membersPromise', 'adminsPromise', 'partnersPromise', 'managersPromise', 'growl', 'Admin', 'AuthService', 'dialogs', '_t', 'Member', 'Export', 'User', 'uiTourService', 'settingsPromise',
-  function ($scope, $sce, $uibModal, membersPromise, adminsPromise, partnersPromise, managersPromise, growl, Admin, AuthService, dialogs, _t, Member, Export, User, uiTourService, settingsPromise) {
+Application.Controllers.controller('AdminMembersController', ['$scope', '$sce', '$uibModal', 'membersPromise', 'adminsPromise', 'partnersPromise', 'managersPromise', 'growl', 'Admin', 'AuthService', 'dialogs', '_t', 'Member', 'Export', 'User', 'uiTourService', 'settingsPromise', '$location',
+  function ($scope, $sce, $uibModal, membersPromise, adminsPromise, partnersPromise, managersPromise, growl, Admin, AuthService, dialogs, _t, Member, Export, User, uiTourService, settingsPromise, $location) {
   /* PRIVATE STATIC CONSTANTS */
 
     // number of users loaded each time we click on 'load more...'
@@ -176,7 +176,8 @@ Application.Controllers.controller('AdminMembersController', ['$scope', '$sce', 
     $scope.orderManager = null;
 
     // default tab: members list
-    $scope.tabs = { active: 0, sub: 0 };
+    const defaultActiveTab = $location.search().tabs ? parseInt($location.search().tabs, 10) : 0;
+    $scope.tabs = { active: defaultActiveTab, sub: 0 };
 
     /**
      * Change the members ordering criterion to the one provided

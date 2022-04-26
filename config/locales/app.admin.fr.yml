@@ -1362,6 +1362,27 @@ fr:
             space: "Espaces"
             training: "Formations"
             pack: "Achat pack d'heure"
+          create_groups: "Créer des groups"
+          add_proof_of_identity_types: "Ajouter des justificatifs"
+          proof_of_identity_type_info: "Vous pouvez ajouter des justificatifs pour vos utilisateurs en fonction des différents groupes que vous avez créés. Chaque membre retrouvera et sera informé de ces justificatifs à fournir dans son espace personnel (à partir de l'onglet \"Mes documents\"). Depuis leur espace vous pouvez aller les vérifier, et valider leur compte si vous avez activé l'option de la validation de compte."
+          proof_of_identity_type_no_group_info: "Les justificatifs sont nécessairement appliqués à des groupes.<br/>Si vous n'avez pas encore de groupe, vous pouvez en créer depuis la page \"Utilisateurs/Groups\" (bouton ci-contre)."
+          proof_of_identity_type_title: "Justificatifs"
+          add_proof_of_identity_type_button: "Créer un justificatif"
+          no_proof_of_identity_types: "Vous n'avez aucun justificatifs.</br>Vérifiez bien que vous avez créé au moins un groupe afin d'accéder à l'ajout d'un document."
+          proof_of_identity_type:
+            group_name: "Group"
+            name: "Justificatif"
+          all_groups: 'Tous les groups'
+          new_proof_of_identity_type: "Créer un justificatif"
+          edit_proof_of_identity_type: "Éditer le justificatif"
+          proof_of_identity_type_form_info: "Paramètres du champs"
+          proof_of_identity_type_select_group: "Choisir un group"
+          proof_of_identity_type_input_name: "Nom du champs"
+          create: "Créer"
+          edit: "Éditer"
+          confirm: "Valider"
+          confirmation_required: "Confirmation requise"
+          do_you_really_want_to_delete_this_proof_of_identity_type: "Voulez vous vraiment supprimer ce justificatif ?"
         home:
           show_upcoming_events: "Afficher les prochains événements"
           upcoming_events:

@@ -1362,6 +1362,27 @@
             space: "Spaces"
             training: "Trainings"
             pack: "Prepaid pack"
+          create_groups: "Create groups"
+          add_proof_of_identity_types: "Add proof of identity"
+          proof_of_identity_type_info: "You can add proof of identity for your users according to the different groups you have created. Each member will find and be informed of these credentials in their personal space (from the tab \"My documents\"). From their space you can check them, and validate their account if you have activated the account validation option."
+          proof_of_identity_type_no_group_info: "Proof of identity are necessarily applied to groups.</br>If you do not have a group yet, you can create one from the \"Users/Groups\" page (button on the right)."
+          proof_of_identity_type_title: "Proof of identity"
+          add_proof_of_identity_type_button: "Create proof of identity"
+          no_proof_of_identity_types: "You do not have any proof of identity.</br>Make sure you have created at least one group in order to add a document."
+          proof_of_identity_type:
+            group_name: "Group"
+            name: "Proof of identity"
+          all_groups: 'All groups'
+          new_proof_of_identity_type: "Create a proof of identity"
+          edit_proof_of_identity_type: "Edit the proof of identity"
+          proof_of_identity_type_form_info: "Field parameters"
+          proof_of_identity_type_select_group: "Choose a group"
+          proof_of_identity_type_input_name: "Name"
+          create: "Create"
+          edit: "Edit"
+          confirm: "Confirm"
+          confirmation_required: "Confirmation required"
+          do_you_really_want_to_delete_this_proof_of_identity_type: "Do you really want to remove this proof of identity ?"
         home:
           show_upcoming_events: "Show upcoming events"
           upcoming_events:
