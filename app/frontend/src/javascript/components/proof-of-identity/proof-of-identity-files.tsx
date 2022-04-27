@@ -83,7 +83,7 @@ const ProofOfIdentityFiles: React.FC<ProofOfIdentityFilesProps> = ({ currentUser
       }
     }
     if (Object.keys(files).length > 0) {
-      ProofOfIdentityFileAPI.index().then(fData => {
+      ProofOfIdentityFileAPI.index({ user_id: currentUser.id }).then(fData => {
         setProofOfIdentityFiles(fData);
         setFiles({});
       });
