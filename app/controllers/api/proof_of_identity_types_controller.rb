@@ -3,7 +3,7 @@
 # API Controller for resources of type ProofOfIdentityType
 # ProofOfIdentityTypes are used to provide admin config proof of identity type by group
 class API::ProofOfIdentityTypesController < API::ApiController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!
   before_action :set_proof_of_identity_type, only: %i[show update destroy]
 
   def index

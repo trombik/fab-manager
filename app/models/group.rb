@@ -8,6 +8,7 @@ class Group < ApplicationRecord
   has_many :trainings_pricings, dependent: :destroy
   has_many :machines_prices, -> { where(priceable_type: 'Machine') }, class_name: 'Price', dependent: :destroy
   has_many :spaces_prices, -> { where(priceable_type: 'Space') }, class_name: 'Price', dependent: :destroy
+  has_many :proof_of_identity_types, dependent: :destroy
 
   scope :all_except_admins, -> { where.not(slug: 'admins') }
 

@@ -957,6 +957,13 @@ de:
         to_credit: 'Guthaben'
         cannot_credit_own_wallet: "Sie können keine Gutschrift auf Ihr eigenes Guthaben einbuchen. Bitten Sie einen anderen Manager oder einen Administrator um die Gutschreibung."
         cannot_extend_own_subscription: "Sie können Ihr eigenes Abonnement nicht erweitern. Bitte fragen Sie einen anderen Manager oder einen Administrator."
+        my_documents: "My documents"
+        my_documents_info: "Following the declaration of your profile, you must declare the proof of identity documents. Once submitted, these documents will be verified by the administrator."
+        my_documents_alert: "Attention!</br>You can submit your documents in pdf or in image (jpg) under a weight limit of 5 Mb max"
+        proof_of_identity_files: "Proof of identity"
+        find_below_the_proof_of_identity_files: "You will find below the proof of identity documents submitted by the member."
+        save: "Save"
+        to_complete: "To complete"
       #extend a subscription for free
       free_extend_modal:
         extend_subscription: "Abonnement verlängern"

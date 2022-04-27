@@ -162,6 +162,15 @@ angular.module('application.router', ['ui.router'])
           settingsPromise: ['Setting', function (Setting) { return Setting.query({ names: "['phone_required', 'address_required']" }).$promise; }]
         }
       })
+      .state('app.logged.dashboard.proof_of_identity_files', {
+        url: '/proof_of_identity_files',
+        views: {
+          'main@': {
+            templateUrl: '/dashboard/proof_of_identity_files.html',
+            controller: 'DashboardController'
+          }
+        }
+      })
       .state('app.logged.dashboard.projects', {
         url: '/projects',
         views: {

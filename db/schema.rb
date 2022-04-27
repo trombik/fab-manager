@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_22_090709) do
+ActiveRecord::Schema.define(version: 2022_04_26_162334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -646,6 +646,16 @@ ActiveRecord::Schema.define(version: 2022_04_22_090709) do
     t.integer "theme_id"
     t.index ["project_id"], name: "index_projects_themes_on_project_id"
     t.index ["theme_id"], name: "index_projects_themes_on_theme_id"
+  end
+
+  create_table "proof_of_identity_files", force: :cascade do |t|
+    t.bigint "proof_of_identity_type_id"
+    t.bigint "user_id"
+    t.string "attachment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["proof_of_identity_type_id"], name: "index_proof_of_identity_files_on_proof_of_identity_type_id"
+    t.index ["user_id"], name: "index_proof_of_identity_files_on_user_id"
   end
 
   create_table "proof_of_identity_types", force: :cascade do |t|

@@ -957,6 +957,13 @@ fr:
         to_credit: 'Créditer'
         cannot_credit_own_wallet: "Vous ne pouvez pas créditer votre propre porte-monnaie. Veuillez demander à un autre gestionnaire ou à un administrateur de créditer votre porte-monnaie."
         cannot_extend_own_subscription: "Vous ne pouvez pas prolonger votre propre abonnement. Veuillez demander à un autre gestionnaire ou à un administrateur de prolonger votre abonnement."
+        my_documents: "Mes documents"
+        my_documents_info: "Suite à la déclaration de votre profil, vous devez déclarer des justificatifs. Une fois déposé, ces documents vont être vérifiés par l'administrateur."
+        my_documents_alert: "Attention ! </br>Vous pouvez déposer vos documents en pdf ou en image(jpg) sous une limite de poids de 5 Mo max"
+        proof_of_identity_files: "Justificatifs"
+        find_below_the_proof_of_identity_files: "Retrouvez ci-dessous, les justificatifs déposés par le membre."
+        save: "Enregistrer"
+        to_complete: "À complèter"
       #extend a subscription for free
       free_extend_modal:
         extend_subscription: "Prolonger l'abonnement"

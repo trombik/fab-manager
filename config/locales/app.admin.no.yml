@@ -957,6 +957,13 @@
         to_credit: 'Kreditt'
         cannot_credit_own_wallet: "Du kan ikke kreditere din egen lommebok. Vennligst spør en annen leder eller administrator om å kreditere din lommebok."
         cannot_extend_own_subscription: "Du kan ikke utvide ditt eget medlemskap. Be en annen leder eller en administrator om å utvide abonnementet."
+        my_documents: "My documents"
+        my_documents_info: "Following the declaration of your profile, you must declare the proof of identity documents. Once submitted, these documents will be verified by the administrator."
+        my_documents_alert: "Attention!</br>You can submit your documents in pdf or in image (jpg) under a weight limit of 5 Mb max"
+        proof_of_identity_files: "Proof of identity"
+        find_below_the_proof_of_identity_files: "You will find below the proof of identity documents submitted by the member."
+        save: "Save"
+        to_complete: "To complete"
       #extend a subscription for free
       free_extend_modal:
         extend_subscription: "Forleng abonnementet"
