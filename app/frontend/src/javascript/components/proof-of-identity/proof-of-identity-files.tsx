@@ -134,7 +134,9 @@ const ProofOfIdentityFiles: React.FC<ProofOfIdentityFilesProps> = ({ currentUser
           );
         })}
       </div>
-      <button type="button" className="btn btn-warning m-b m-t pull-right" onClick={onFileUpload}>{t('app.admin.members_edit.save')}</button>
+      {hasProofOfIdentityTypes() && (
+        <button type="button" className="btn btn-warning m-b m-t pull-right" onClick={onFileUpload}>{t('app.admin.members_edit.save')}</button>
+      )}
     </section>
   );
 };
