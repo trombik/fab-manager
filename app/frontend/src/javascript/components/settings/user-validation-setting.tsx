@@ -34,12 +34,17 @@ const UserValidationSetting: React.FC<UserValidationSettingProps> = ({ onSuccess
    */
   const updateSetting = (name: SettingName, value: string) => {
     SettingAPI.update(name, value)
-      .then(() => onSuccess(t('app.admin.settings.customization_of_SETTING_successfully_saved', { SETTING: t(`app.admin.settings.${name}`) })))
-      .catch(err => {
+      .then(() => {
+        if (name === SettingName.UserValidationRequired) {
+          onSuccess(t('app.admin.settings.customization_of_SETTING_successfully_saved', { SETTING: t(`app.admin.settings.compte.${name}`) }));
+        }
+      }).catch(err => {
         if (err.status === 304) return;
 
         if (err.status === 423) {
-          onError(t('app.admin.settings.error_SETTING_locked', { SETTING: t(name) }));
+          if (name === SettingName.UserValidationRequired) {
+            onError(t('app.admin.settings.error_SETTING_locked', { SETTING: t(`app.admin.settings.compte.${name}`) }));
+          }
           return;
         }
 

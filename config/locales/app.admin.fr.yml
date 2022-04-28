@@ -1356,6 +1356,7 @@ fr:
           enable_statistics: "Activer les statistiques"
         compte:
           compte: "Compte"
+          user_validation_required: "la validation du compte"
           user_validation_required_title: "Validation des comptes"
           user_validation_required_info: "En activant cette option, seuls les membres dont le compte est validé par un administrateur ou un gestionnaire pourront effectuer des réservations."
           user_validation_required_option_label: "Activer l'option validation des comptes"
