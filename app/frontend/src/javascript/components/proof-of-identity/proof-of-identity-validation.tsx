@@ -10,6 +10,7 @@ import { ProofOfIdentityType } from '../../models/proof-of-identity-type';
 import { ProofOfIdentityFile } from '../../models/proof-of-identity-file';
 import ProofOfIdentityTypeAPI from '../../api/proof-of-identity-type';
 import ProofOfIdentityFileAPI from '../../api/proof-of-identity-file';
+import { ProofOfIdentityRefusalModal } from './proof-of-identity-refusal-modal';
 
 declare const Application: IApplication;
 
@@ -27,6 +28,7 @@ const ProofOfIdentityValidation: React.FC<ProofOfIdentityValidationProps> = ({ o
   // list of proof of identity type
   const [proofOfIdentityTypes, setProofOfIdentityTypes] = useState<Array<ProofOfIdentityType>>([]);
   const [proofOfIdentityFiles, setProofOfIdentityFiles] = useState<Array<ProofOfIdentityFile>>([]);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
   // get groups
   useEffect(() => {
@@ -55,8 +57,20 @@ const ProofOfIdentityValidation: React.FC<ProofOfIdentityValidationProps> = ({ o
     return proofOfIdentityTypes.length > 0;
   };
 
-  const getProofOfIdentityFileUrl = (poifId: number) => {
+  const getProofOfIdentityFileUrl = (poifId: number): string => {
     return `/api/proof_of_identity_files/${poifId}/download`;
+  };
+
+  const openProofOfIdentityRefusalModal = (): void => {
+    setModalIsOpen(true);
+  };
+
+  const toggleModal = (): void => {
+    setModalIsOpen(false);
+  };
+
+  const saveProofOfIdentityRefusalOnSuccess = (): void => {
+    setModalIsOpen(false);
   };
 
   return (
@@ -81,6 +95,20 @@ const ProofOfIdentityValidation: React.FC<ProofOfIdentityValidationProps> = ({ o
           );
         })}
       </section>
+      {hasProofOfIdentityTypes() && (
+        <section className="panel panel-default bg-light m-t-lg col-sm-12 col-md-12 col-lg-4">
+          <h3>{t('app.admin.members_edit.refuse_proof_of_identity_files')}</h3>
+          <p className="text-black">{t('app.admin.members_edit.refuse_proof_of_identity_files_info')}</p>
+          <button type="button" className="btn btn-warning m-b m-t" onClick={openProofOfIdentityRefusalModal}>{t('app.admin.members_edit.proof_of_identity_refusal')}</button>
+          <ProofOfIdentityRefusalModal
+            isOpen={modalIsOpen}
+            proofOfIdentityTypes={proofOfIdentityTypes}
+            toggleModal={toggleModal}
+            operator={operator}
+            member={member}
+            onSuccess={saveProofOfIdentityRefusalOnSuccess}/>
+        </section>
+      )}
     </div>
   );
 };

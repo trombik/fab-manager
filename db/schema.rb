@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_26_162334) do
+ActiveRecord::Schema.define(version: 2022_04_28_125751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -658,6 +658,21 @@ ActiveRecord::Schema.define(version: 2022_04_26_162334) do
     t.index ["user_id"], name: "index_proof_of_identity_files_on_user_id"
   end
 
+  create_table "proof_of_identity_refusals", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "operator_id"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_proof_of_identity_refusals_on_user_id"
+  end
+
+  create_table "proof_of_identity_refusals_types", id: false, force: :cascade do |t|
+    t.bigint "proof_of_identity_type_id", null: false
+    t.bigint "proof_of_identity_refusal_id", null: false
+    t.index ["proof_of_identity_type_id", "proof_of_identity_refusal_id"], name: "proof_of_identity_type_id_and_proof_of_identity_refusal_id"
+  end
+
   create_table "proof_of_identity_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -1051,6 +1066,7 @@ ActiveRecord::Schema.define(version: 2022_04_26_162334) do
   add_foreign_key "projects_spaces", "spaces"
   add_foreign_key "projects_themes", "projects"
   add_foreign_key "projects_themes", "themes"
+  add_foreign_key "proof_of_identity_refusals", "users"
   add_foreign_key "proof_of_identity_types_groups", "groups"
   add_foreign_key "proof_of_identity_types_groups", "proof_of_identity_types"
   add_foreign_key "reservations", "statistic_profiles"

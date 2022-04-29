@@ -52,6 +52,7 @@ class User < ApplicationRecord
   has_many :accounting_periods, foreign_key: 'closed_by', dependent: :nullify
 
   has_many :proof_of_identity_files, dependent: :destroy
+  has_many :proof_of_identity_refusals, dependent: :destroy
 
   # fix for create admin user
   before_save do

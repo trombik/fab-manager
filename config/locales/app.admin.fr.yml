@@ -964,6 +964,13 @@ fr:
         find_below_the_proof_of_identity_files: "Retrouvez ci-dessous, les justificatifs déposés par le membre."
         save: "Enregistrer"
         to_complete: "À complèter"
+        proof_of_identity_refusal: "Refus du justificatif"
+        refuse_proof_of_identity_files: "Refuser des justificatifs"
+        refuse_proof_of_identity_files_info: "Après vérification, vous pouvez notifier le membre que le ou les justificatifs déposés ne sont pas recevables. Vous pouvez préciser les motifs de votre refus et lui indiquer les actions à mettre en oeuvre. Le membre sera notifié par mail."
+        confirm: "Confirmer"
+        cancel: "Annuler"
+        proof_of_identity_refusal_comment: "Commentaire"
+        proof_of_identity_refuse_input_message: "Tapper votre text"
       #extend a subscription for free
       free_extend_modal:
         extend_subscription: "Prolonger l'abonnement"

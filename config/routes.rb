@@ -139,6 +139,7 @@ Rails.application.routes.draw do
     resources :proof_of_identity_files, only: %i[index show create update] do
       get 'download', on: :member
     end
+    resources :proof_of_identity_refusals, only: %i[index show create]
 
     # for admin
     resources :trainings do
