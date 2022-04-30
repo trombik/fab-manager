@@ -61,6 +61,10 @@ class Members::MembersService
     merge_result
   end
 
+  def validate(is_valid)
+    member.update(validated_at: is_valid ? Time.now : nil)
+  end
+
   private
 
   def notify_user_profile_complete(previous_state)

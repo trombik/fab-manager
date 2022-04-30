@@ -971,6 +971,11 @@ fr:
         cancel: "Annuler"
         proof_of_identity_refusal_comment: "Commentaire"
         proof_of_identity_refuse_input_message: "Tapper votre text"
+        validate_account: "Valider le compte"
+        validate_member_success: "Le membre est validé"
+        invalidate_member_success: "Le membre est invalidé"
+        validate_member_error: "Une error est survenue : impossible de valider de ce membre."
+        invalidate_member_error: "Une error est survenue : impossible d'invalider de ce membre."
       #extend a subscription for free
       free_extend_modal:
         extend_subscription: "Prolonger l'abonnement"

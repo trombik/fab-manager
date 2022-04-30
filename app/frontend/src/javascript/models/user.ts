@@ -82,4 +82,5 @@ export interface User {
   training_credits: Array<number>,
   machine_credits: Array<{machine_id: number, hours_used: number}>,
   last_sign_in_at: Date
+  validated_at: Date
 }

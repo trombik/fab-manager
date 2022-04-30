@@ -808,6 +808,14 @@ Application.Controllers.controller('EditMemberController', ['$scope', '$state', 
     };
 
     /**
+     * Callback triggered if validate member was successfully taken
+     */
+    $scope.onValidateMemberSuccess = (_user, message) => {
+      growl.success(message);
+      $scope.user = _user;
+    };
+
+    /**
      * Callback triggered in case of error
      */
     $scope.onError = (message) => {

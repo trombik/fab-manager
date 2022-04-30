@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_28_125751) do
+ActiveRecord::Schema.define(version: 2022_04_29_164234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -974,6 +974,7 @@ ActiveRecord::Schema.define(version: 2022_04_28_125751) do
     t.boolean "is_allow_newsletter"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
+    t.datetime "validated_at"
     t.index ["auth_token"], name: "index_users_on_auth_token"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

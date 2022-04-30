@@ -56,6 +56,7 @@ Rails.application.routes.draw do
       get 'mapping', action: 'mapping', on: :collection
       patch ':id/complete_tour', action: 'complete_tour', on: :collection
       patch ':id/update_role', action: 'update_role', on: :collection
+      patch ':id/validate', action: 'validate', on: :collection
     end
     resources :reservations, only: %i[show index update]
     resources :notifications, only: %i[index show update] do

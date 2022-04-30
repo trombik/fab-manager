@@ -964,6 +964,17 @@ en:
         find_below_the_proof_of_identity_files: "You will find below the proof of identity documents submitted by the member."
         save: "Save"
         to_complete: "To complete"
+        proof_of_identity_refusal: "Refusal of the proof of identity"
+        refuse_proof_of_identity_files: "Refusing to proof of identity"
+        refuse_proof_of_identity_files_info: "After verification, you may notify the member that the evidence submitted is not acceptable. You can specify the reasons for your refusal and indicate the actions to be taken. The member will be notified by e-mail."
+        confirm: "Confirm"
+        cancel: "Cancel"
+        proof_of_identity_refusal_comment: "Comment"
+        proof_of_identity_refuse_input_message: "Type your text"
+        validate_member_success: "The member is validated"
+        invalidate_member_success: "The member is invalidated"
+        validate_member_error: "An error occurred: impossible to validate from this member."
+        invalidate_member_error: "An error occurred: impossible to invalidate from this member."
       # extend a subscription for free
       free_extend_modal:
         extend_subscription: "Extend the subscription"
