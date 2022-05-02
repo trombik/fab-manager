@@ -160,6 +160,9 @@ Application.Controllers.controller('ShowEventController', ['$scope', '$state', '
     // Get the details for the current event (event's id is recovered from the current URL)
     $scope.event = eventPromise;
 
+    // the application global settings
+    $scope.settings = settingsPromise;
+
     // List of price categories for the events
     $scope.priceCategories = priceCategoriesPromise;
 
@@ -241,6 +244,17 @@ Application.Controllers.controller('ShowEventController', ['$scope', '$state', '
     $scope.cancelReserve = function (e) {
       e.preventDefault();
       return resetEventReserve();
+    };
+
+    $scope.isUserValidatedByType = () => {
+      return helpers.isUserValidatedByType($scope.ctrl.member, $scope.settings, 'event');
+    };
+
+    $scope.isShowReserveEventButton = () => {
+      return $scope.event.nb_free_places > 0 &&
+        !$scope.reserve.toReserve &&
+        $scope.now.isBefore($scope.event.end_date) &&
+        helpers.isUserValidatedByType($scope.ctrl.member, $scope.settings, 'event');
     };
 
     /**

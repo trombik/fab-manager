@@ -73,6 +73,9 @@ Application.Controllers.controller('PlansIndexController', ['$scope', '$rootScop
     $scope.selectPlan = function (plan) {
       setTimeout(() => {
         if ($scope.isAuthenticated()) {
+          if (!AuthService.isAuthorized(['admin', 'manager']) && (helpers.isUserValidationRequired($scope.settings, 'subscription') && !helpers.isUserValidated($scope.ctrl.member))) {
+            return;
+          }
           if ($scope.selectedPlan !== plan) {
             $scope.selectedPlan = plan;
             $scope.planSelectionTime = new Date();
@@ -84,6 +87,10 @@ Application.Controllers.controller('PlansIndexController', ['$scope', '$rootScop
         }
         $scope.$apply();
       }, 50);
+    };
+
+    $scope.canSelectPlan = function () {
+      return AuthService.isAuthorized(['admin', 'manager']) || !helpers.isUserValidationRequired($scope.settings, 'subscription') || (helpers.isUserValidationRequired($scope.settings, 'subscription') && helpers.isUserValidated($scope.ctrl.member));
     };
 
     /**

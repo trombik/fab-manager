@@ -91,8 +91,8 @@ Application.Controllers.controller('ShowTrainingController', ['$scope', '$state'
  * training can be reserved during the reservation process (the shopping cart may contains only one training and a subscription).
  */
 
-Application.Controllers.controller('ReserveTrainingController', ['$scope', '$transition$', 'Auth', 'AuthService', '$timeout', 'Availability', 'Member', 'plansPromise', 'groupsPromise', 'settingsPromise', 'trainingPromise', '_t', 'uiCalendarConfig', 'CalendarConfig', 'Reservation',
-  function ($scope, $transition$, Auth, AuthService, $timeout, Availability, Member, plansPromise, groupsPromise, settingsPromise, trainingPromise, _t, uiCalendarConfig, CalendarConfig, Reservation) {
+Application.Controllers.controller('ReserveTrainingController', ['$scope', '$transition$', 'Auth', 'AuthService', '$timeout', 'Availability', 'Member', 'plansPromise', 'groupsPromise', 'settingsPromise', 'trainingPromise', '_t', 'uiCalendarConfig', 'CalendarConfig', 'Reservation', 'helpers',
+  function ($scope, $transition$, Auth, AuthService, $timeout, Availability, Member, plansPromise, groupsPromise, settingsPromise, trainingPromise, _t, uiCalendarConfig, CalendarConfig, Reservation, helpers) {
   /* PRIVATE STATIC CONSTANTS */
 
     // Color of the selected event backgound
@@ -407,6 +407,9 @@ Application.Controllers.controller('ReserveTrainingController', ['$scope', '$tra
      * @see http://fullcalendar.io/docs/mouse/eventClick/
      */
     const calendarEventClickCb = function (event, jsEvent, view) {
+      if (!AuthService.isAuthorized(['admin', 'manager']) && (helpers.isUserValidationRequired($scope.settings, 'training') && !helpers.isUserValidated($scope.ctrl.member))) {
+        return;
+      }
       $scope.selectedEvent = event;
       if ($transition$.params().id === 'all') {
         $scope.training = event.training;

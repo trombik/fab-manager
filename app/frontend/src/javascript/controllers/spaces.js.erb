@@ -307,8 +307,8 @@ Application.Controllers.controller('ShowSpaceController', ['$scope', '$state', '
  * per slots.
  */
 
-Application.Controllers.controller('ReserveSpaceController', ['$scope', '$transition$', 'Auth', '$timeout', 'Availability', 'Member', 'plansPromise', 'groupsPromise', 'settingsPromise', 'spacePromise', '_t', 'uiCalendarConfig', 'CalendarConfig', 'Reservation',
-  function ($scope, $transition$, Auth, $timeout, Availability, Member, plansPromise, groupsPromise, settingsPromise, spacePromise, _t, uiCalendarConfig, CalendarConfig, Reservation) {
+Application.Controllers.controller('ReserveSpaceController', ['$scope', '$transition$', 'Auth', '$timeout', 'Availability', 'Member', 'plansPromise', 'groupsPromise', 'settingsPromise', 'spacePromise', '_t', 'uiCalendarConfig', 'CalendarConfig', 'Reservation', 'helpers', 'AuthService',
+  function ($scope, $transition$, Auth, $timeout, Availability, Member, plansPromise, groupsPromise, settingsPromise, spacePromise, _t, uiCalendarConfig, CalendarConfig, Reservation, helpers, AuthService) {
     /* PRIVATE STATIC CONSTANTS */
 
     // Color of the selected event backgound
@@ -617,6 +617,9 @@ Application.Controllers.controller('ReserveSpaceController', ['$scope', '$transi
      * @see http://fullcalendar.io/docs/mouse/eventClick/
      */
     const calendarEventClickCb = function (event, jsEvent, view) {
+      if (!AuthService.isAuthorized(['admin', 'manager']) && (helpers.isUserValidationRequired($scope.settings, 'space') && !helpers.isUserValidated($scope.ctrl.member))) {
+        return;
+      }
       $scope.selectedEvent = event;
       $scope.selectionTime = new Date();
     };
