@@ -383,6 +383,9 @@ Application.Controllers.controller('ReserveSpaceController', ['$scope', '$transi
     // Global config: message to the end user concerning the space reservation
     $scope.spaceExplicationsAlert = settingsPromise.space_explications_alert;
 
+    // Global config: is the user validation required ?
+    $scope.enableUserValidationRequired = settingsPromise.user_validation_required === 'true';
+
     /**
      * Change the last selected slot's appearance to looks like 'added to cart'
      */

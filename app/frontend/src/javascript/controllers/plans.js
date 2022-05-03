@@ -45,6 +45,9 @@ Application.Controllers.controller('PlansIndexController', ['$scope', '$rootScop
     // the application global settings
     $scope.settings = settingsPromise;
 
+    // Global config: is the user validation required ?
+    $scope.enableUserValidationRequired = settingsPromise.user_validation_required === 'true';
+
     // Discount coupon to apply to the basket, if any
     $scope.coupon =
       { applied: null };

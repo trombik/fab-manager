@@ -170,6 +170,9 @@ Application.Controllers.controller('ReserveTrainingController', ['$scope', '$tra
     // Global config: message to the end user giving advice about the training reservation
     $scope.trainingInformationMessage = settingsPromise.training_information_message;
 
+    // Global config: is the user validation required ?
+    $scope.enableUserValidationRequired = settingsPromise.user_validation_required === 'true';
+
     /**
      * Change the last selected slot's appearance to looks like 'added to cart'
      */

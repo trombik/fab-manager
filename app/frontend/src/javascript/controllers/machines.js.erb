@@ -443,6 +443,9 @@ Application.Controllers.controller('ReserveMachineController', ['$scope', '$tran
     // Global config: message to the end user concerning the machine bookings
     $scope.machineExplicationsAlert = settingsPromise.machine_explications_alert;
 
+    // Global config: is the user validation required ?
+    $scope.enableUserValidationRequired = settingsPromise.user_validation_required === 'true';
+
     /**
      * Change the last selected slot's appearance to looks like 'added to cart'
      */

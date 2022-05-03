@@ -181,6 +181,9 @@ Application.Controllers.controller('ShowEventController', ['$scope', '$state', '
     // Message displayed to the end user about rules that applies to events reservations
     $scope.eventExplicationsAlert = settingsPromise.event_explications_alert;
 
+    // Global config: is the user validation required ?
+    $scope.enableUserValidationRequired = settingsPromise.user_validation_required === 'true';
+
     // online payments (by card)
     $scope.onlinePayment = {
       showModal: false,
