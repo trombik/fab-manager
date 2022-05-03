@@ -589,6 +589,10 @@ Application.Controllers.controller('ReserveMachineController', ['$scope', '$tran
       }, 50);
     };
 
+    $scope.canSelectPlan = function () {
+      return helpers.isUserValidatedByType($scope.ctrl.member, $scope.settings, 'subscription');
+    };
+
     /**
      * Check if the provided plan is currently selected
      * @param plan {Object} Resource plan

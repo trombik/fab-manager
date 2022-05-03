@@ -93,7 +93,7 @@ Application.Controllers.controller('PlansIndexController', ['$scope', '$rootScop
     };
 
     $scope.canSelectPlan = function () {
-      return AuthService.isAuthorized(['admin', 'manager']) || !helpers.isUserValidationRequired($scope.settings, 'subscription') || (helpers.isUserValidationRequired($scope.settings, 'subscription') && helpers.isUserValidated($scope.ctrl.member));
+      return helpers.isUserValidatedByType($scope.ctrl.member, $scope.settings, 'subscription');
     };
 
     /**
