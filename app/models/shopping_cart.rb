@@ -55,7 +55,7 @@ class ShoppingCart
         list = user_validation_required_list.split(',')
         errors = []
         items.each do |item|
-          if list.include?(item.type)
+          if list.include?(item.type) && @customer.validated_at.blank?
             errors.push("User validation is required for reserve #{item.type}")
           end
         end
