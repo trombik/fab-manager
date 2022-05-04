@@ -21,6 +21,18 @@ class Members::MembersService
       return false
     end
 
+    user_validation_required = Setting.get('user_validation_required')
+    validated_at_changed = false
+    if params[:group_id] && @member.group_id != params[:group_id].to_i && user_validation_required
+      # here a group change, user must re-validate by admin
+      current_proof_of_identity_types = @member.group.proof_of_identity_types
+      new_proof_of_identity_types = Group.find(params[:group_id].to_i).proof_of_identity_types
+      if @member.validated_at? && !(new_proof_of_identity_types - current_proof_of_identity_types).empty?
+        validated_at_changed = true
+        @member.validated_at = nil
+      end
+    end
+
     not_complete = member.need_completion?
     up_result = member.update(params)
 
