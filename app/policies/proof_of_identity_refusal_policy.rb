@@ -3,14 +3,14 @@
 # Check the access policies for API::ProofOfIdentityRefusalsController
 class ProofOfIdentityRefusalPolicy < ApplicationPolicy
   def index?
-    user.admin?
+    user.privileged?
   end
 
   def create?
-    user.admin?
+    user.privileged?
   end
 
   def show?
-    user.admin?
+    user.privileged?
   end
 end

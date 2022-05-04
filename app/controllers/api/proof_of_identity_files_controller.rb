@@ -7,14 +7,13 @@ class API::ProofOfIdentityFilesController < API::ApiController
   before_action :set_proof_of_identity_file, only: %i[show update download]
 
   def index
-    authorize ProofOfIdentityFile
-    @proof_of_identity_files = ProofOfIdentityFileService.list(params)
+    @proof_of_identity_files = ProofOfIdentityFileService.list(current_user, params)
   end
 
   # PUT /api/proof_of_identity_files/1/
   def update
     authorize @proof_of_identity_file
-    if @proof_of_identity_file.update(proof_of_identity_file_params.permit!)
+    if @proof_of_identity_file.update(proof_of_identity_file_params)
       render :show, status: :ok, location: @proof_of_identity_file
     else
       render json: @proof_of_identity_file.errors, status: :unprocessable_entity
@@ -23,8 +22,8 @@ class API::ProofOfIdentityFilesController < API::ApiController
 
   # POST /api/proof_of_identity_files/
   def create
-    authorize ProofOfIdentityFile
-    @proof_of_identity_file = ProofOfIdentityFile.new(proof_of_identity_file_params.permit!)
+    @proof_of_identity_file = ProofOfIdentityFile.new(proof_of_identity_file_params)
+    authorize @proof_of_identity_file
     if @proof_of_identity_file.save
       render :show, status: :created, location: @proof_of_identity_file
     else

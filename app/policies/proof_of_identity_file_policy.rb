@@ -1,20 +1,18 @@
 class ProofOfIdentityFilePolicy < ApplicationPolicy
 
   def index?
-    #user.admin? or record.user_id == user.id
-    true
+    user.privileged?
   end
 
   def create?
-    #user.admin? or record.user_id == user.id
-    true
+    user.privileged? or record.user_id == user.id
   end
 
   def update?
-    user.admin? or record.user_id == user.id
+    user.privileged? or record.user_id == user.id
   end
 
   def download?
-    user.admin? or record.user_id == user.id
+    user.privileged? or record.user_id == user.id
   end
 end

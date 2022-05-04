@@ -2,10 +2,12 @@
 
 # Provides methods for ProofOfIdentityFile
 class ProofOfIdentityFileService
-  def self.list(filters = {})
+  def self.list(operator, filters = {})
     files = []
     if filters[:user_id].present?
-      files = ProofOfIdentityFile.where(user_id: filters[:user_id])
+      if operator.privileged? || filters[:user_id].to_i == operator.id
+        files = ProofOfIdentityFile.where(user_id: filters[:user_id])
+      end
     end
     files
   end
