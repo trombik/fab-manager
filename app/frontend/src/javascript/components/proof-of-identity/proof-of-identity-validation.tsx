@@ -33,19 +33,13 @@ const ProofOfIdentityValidation: React.FC<ProofOfIdentityValidationProps> = ({ o
 
   // get groups
   useEffect(() => {
-    ProofOfIdentityTypeAPI.index().then(tData => {
-      setProofOfIdentityTypes(getProofOfIdentityTypesByUserGroup(tData));
+    ProofOfIdentityTypeAPI.index({ group_id: member.group_id }).then(tData => {
+      setProofOfIdentityTypes(tData);
     });
     ProofOfIdentityFileAPI.index({ user_id: member.id }).then(fData => {
       setProofOfIdentityFiles(fData);
     });
   }, []);
-
-  const getProofOfIdentityTypesByUserGroup = (data: Array<ProofOfIdentityType>): Array<ProofOfIdentityType> => {
-    return _.filter<ProofOfIdentityType>(data, (poit: ProofOfIdentityType) => {
-      return poit.group_ids.includes(member.group_id);
-    });
-  };
 
   const getProofOfIdentityFileByType = (proofOfIdentityTypeId: number): ProofOfIdentityFile => {
     return _.find<ProofOfIdentityFile>(proofOfIdentityFiles, { proof_of_identity_type_id: proofOfIdentityTypeId });

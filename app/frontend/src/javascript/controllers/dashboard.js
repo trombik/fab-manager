@@ -12,8 +12,8 @@
  */
 'use strict';
 
-Application.Controllers.controller('DashboardController', ['$scope', 'memberPromise', 'trainingsPromise', 'SocialNetworks', 'growl',
-  function ($scope, memberPromise, trainingsPromise, SocialNetworks, growl) {
+Application.Controllers.controller('DashboardController', ['$scope', 'memberPromise', 'trainingsPromise', 'SocialNetworks', 'growl', 'ProofOfIdentityType',
+  function ($scope, memberPromise, trainingsPromise, SocialNetworks, growl, ProofOfIdentityType) {
     // Current user's profile
     $scope.user = memberPromise;
 
@@ -46,7 +46,13 @@ Application.Controllers.controller('DashboardController', ['$scope', 'memberProm
     /**
      * Kind of constructor: these actions will be realized first when the controller is loaded
      */
-    const initialize = () => $scope.social.networks = filterNetworks();
+    const initialize = () => {
+      $scope.social.networks = filterNetworks();
+
+      ProofOfIdentityType.query({ group_id: $scope.currentUser.group_id }, function (proofOfIdentityTypes) {
+        $scope.hasProofOfIdentityTypes = proofOfIdentityTypes.length > 0;
+      });
+    };
 
     /**
      * Filter the social networks or websites that are associated with the profile of the user provided in promise
