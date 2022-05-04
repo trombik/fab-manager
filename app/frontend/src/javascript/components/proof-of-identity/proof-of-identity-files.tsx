@@ -27,6 +27,7 @@ const ProofOfIdentityFiles: React.FC<ProofOfIdentityFilesProps> = ({ currentUser
   const [proofOfIdentityTypes, setProofOfIdentityTypes] = useState<Array<ProofOfIdentityType>>([]);
   const [proofOfIdentityFiles, setProofOfIdentityFiles] = useState<Array<ProofOfIdentityFile>>([]);
   const [files, setFiles] = useState<any>({});
+  const [errors, setErrors] = useState<Array<number>>([]);
 
   // get proof of identity type and files
   useEffect(() => {
@@ -61,6 +62,16 @@ const ProofOfIdentityFiles: React.FC<ProofOfIdentityFilesProps> = ({ currentUser
 
   const onFileChange = (poitId: number) => {
     return (event) => {
+      const fileSize = event.target.files[0].size;
+      let _errors = errors;
+      // 5m max
+      if (fileSize > 5242880) {
+        _errors = errors.concat(poitId);
+        setErrors(_errors);
+      } else {
+        _errors = errors.filter(e => e !== poitId);
+      }
+      setErrors(_errors);
       setFiles({
         ...files,
         [poitId]: event.target.files[0]
@@ -69,24 +80,28 @@ const ProofOfIdentityFiles: React.FC<ProofOfIdentityFilesProps> = ({ currentUser
   };
 
   const onFileUpload = async () => {
-    for (const proofOfIdentityTypeId of Object.keys(files)) {
-      const formData = new FormData();
+    try {
+      for (const proofOfIdentityTypeId of Object.keys(files)) {
+        const formData = new FormData();
 
-      formData.append('proof_of_identity_file[user_id]', currentUser.id.toString());
-      formData.append('proof_of_identity_file[proof_of_identity_type_id]', proofOfIdentityTypeId);
-      formData.append('proof_of_identity_file[attachment]', files[proofOfIdentityTypeId]);
-      const proofOfIdentityFile = getProofOfIdentityFileByType(parseInt(proofOfIdentityTypeId, 10));
-      if (proofOfIdentityFile) {
-        await ProofOfIdentityFileAPI.update(proofOfIdentityFile.id, formData);
-      } else {
-        await ProofOfIdentityFileAPI.create(formData);
+        formData.append('proof_of_identity_file[user_id]', currentUser.id.toString());
+        formData.append('proof_of_identity_file[proof_of_identity_type_id]', proofOfIdentityTypeId);
+        formData.append('proof_of_identity_file[attachment]', files[proofOfIdentityTypeId]);
+        const proofOfIdentityFile = getProofOfIdentityFileByType(parseInt(proofOfIdentityTypeId, 10));
+        if (proofOfIdentityFile) {
+          await ProofOfIdentityFileAPI.update(proofOfIdentityFile.id, formData);
+        } else {
+          await ProofOfIdentityFileAPI.create(formData);
+        }
       }
-    }
-    if (Object.keys(files).length > 0) {
-      ProofOfIdentityFileAPI.index({ user_id: currentUser.id }).then(fData => {
-        setProofOfIdentityFiles(fData);
-        setFiles({});
-      });
+      if (Object.keys(files).length > 0) {
+        ProofOfIdentityFileAPI.index({ user_id: currentUser.id }).then(fData => {
+          setProofOfIdentityFiles(fData);
+          setFiles({});
+        });
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -104,7 +119,7 @@ const ProofOfIdentityFiles: React.FC<ProofOfIdentityFilesProps> = ({ currentUser
       <div className="widget-content no-bg auto">
         {proofOfIdentityTypes.map((poit: ProofOfIdentityType) => {
           return (
-            <div className="form-group" key={poit.id}>
+            <div className={`form-group ${errors.includes(poit.id) ? 'has-error' : ''}`} key={poit.id}>
               <label className="control-label m-r">{poit.name}</label>
               <div className="fileinput input-group">
                 <div className="form-control">
@@ -125,17 +140,18 @@ const ProofOfIdentityFiles: React.FC<ProofOfIdentityFilesProps> = ({ currentUser
                     <span className="fileinput-exists">Modifier</span>
                   )}
                   <input type="file"
-                    accept=".pdf"
+                    accept="application/pdf,image/jpeg,image/jpg,image/png"
                     onChange={onFileChange(poit.id)}
                     required />
                 </span>
               </div>
+              {errors.includes(poit.id) && <span className="help-block">{t('app.admin.members_edit.proof_of_identity_file_size_error')}</span>}
             </div>
           );
         })}
       </div>
       {hasProofOfIdentityTypes() && (
-        <button type="button" className="btn btn-warning m-b m-t pull-right" onClick={onFileUpload}>{t('app.admin.members_edit.save')}</button>
+        <button type="button" className="btn btn-warning m-b m-t pull-right" onClick={onFileUpload} disabled={errors.length > 0}>{t('app.admin.members_edit.save')}</button>
       )}
     </section>
   );

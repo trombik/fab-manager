@@ -1,5 +1,8 @@
 # Changelog Fab-manager
 
+- [TODO DEPLOY] add the `MAX_PROOF_OF_IDENTITY_FILE_SIZE` environment variable (see [doc/environment.md](doc/environment.md#MAX_PROOF_OF_IDENTITY_FILE_SIZE) for configuration details)
+
+
 ## v5.3.12 2022 April 20
 
 - Auto sync projects to OpenLab if set openlab_app_id and openlab_app_secret
