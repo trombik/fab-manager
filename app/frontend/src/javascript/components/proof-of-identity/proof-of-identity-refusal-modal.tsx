@@ -10,13 +10,14 @@ import { ProofOfIdentityRefusalForm } from './proof-of-identity-refusal-form';
 interface ProofOfIdentityRefusalModalProps {
   isOpen: boolean,
   toggleModal: () => void,
-  onSuccess: () => void,
+  onSuccess: (message: string) => void,
+  onError: (message: string) => void,
   proofOfIdentityTypes: Array<ProofOfIdentityType>,
   operator: User,
   member: User
 }
 
-export const ProofOfIdentityRefusalModal: React.FC<ProofOfIdentityRefusalModalProps> = ({ isOpen, toggleModal, onSuccess, proofOfIdentityTypes, operator, member }) => {
+export const ProofOfIdentityRefusalModal: React.FC<ProofOfIdentityRefusalModalProps> = ({ isOpen, toggleModal, onSuccess, proofOfIdentityTypes, operator, member, onError }) => {
   const { t } = useTranslation('admin');
 
   const [data, setData] = useState<ProofOfIdentityRefusal>({
@@ -37,8 +38,9 @@ export const ProofOfIdentityRefusalModal: React.FC<ProofOfIdentityRefusalModalPr
   const handleSaveProofOfIdentityRefusal = async (): Promise<void> => {
     try {
       await ProofOfIdentityRefusalAPI.create(data);
-      onSuccess();
+      onSuccess(t('app.admin.members_edit.proof_of_identity_refusal_successfully_sent'));
     } catch (e) {
+      onError(t('app.admin.members_edit.proof_of_identity_refusal_unable_to_send') + e);
     }
   };
 

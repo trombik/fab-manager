@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { react2angular } from 'react2angular';
 import _ from 'lodash';
-import { HtmlTranslate } from '../base/html-translate';
 import { Loader } from '../base/loader';
 import { User } from '../../models/user';
 import { IApplication } from '../../models/application';
@@ -17,12 +16,14 @@ declare const Application: IApplication;
 interface ProofOfIdentityValidationProps {
   operator: User,
   member: User
+  onSuccess: (message: string) => void,
+  onError: (message: string) => void,
 }
 
 /**
  * This component shows a list of proof of identity file of member, admin can download and valid
  **/
-const ProofOfIdentityValidation: React.FC<ProofOfIdentityValidationProps> = ({ operator, member }) => {
+const ProofOfIdentityValidation: React.FC<ProofOfIdentityValidationProps> = ({ operator, member, onSuccess, onError }) => {
   const { t } = useTranslation('admin');
 
   // list of proof of identity type
@@ -69,8 +70,9 @@ const ProofOfIdentityValidation: React.FC<ProofOfIdentityValidationProps> = ({ o
     setModalIsOpen(false);
   };
 
-  const saveProofOfIdentityRefusalOnSuccess = (): void => {
+  const saveProofOfIdentityRefusalOnSuccess = (message: string): void => {
     setModalIsOpen(false);
+    onSuccess(message);
   };
 
   return (
@@ -106,6 +108,7 @@ const ProofOfIdentityValidation: React.FC<ProofOfIdentityValidationProps> = ({ o
             toggleModal={toggleModal}
             operator={operator}
             member={member}
+            onError={onError}
             onSuccess={saveProofOfIdentityRefusalOnSuccess}/>
         </section>
       )}
@@ -113,12 +116,12 @@ const ProofOfIdentityValidation: React.FC<ProofOfIdentityValidationProps> = ({ o
   );
 };
 
-const ProofOfIdentityValidationWrapper: React.FC<ProofOfIdentityValidationProps> = ({ operator, member }) => {
+const ProofOfIdentityValidationWrapper: React.FC<ProofOfIdentityValidationProps> = ({ operator, member, onSuccess, onError }) => {
   return (
     <Loader>
-      <ProofOfIdentityValidation operator={operator} member={member} />
+      <ProofOfIdentityValidation operator={operator} member={member} onSuccess={onSuccess} onError={onError} />
     </Loader>
   );
 };
 
-Application.Components.component('proofOfIdentityValidation', react2angular(ProofOfIdentityValidationWrapper, ['operator', 'member']));
+Application.Components.component('proofOfIdentityValidation', react2angular(ProofOfIdentityValidationWrapper, ['operator', 'member', 'onSuccess', 'onError']));

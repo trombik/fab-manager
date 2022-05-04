@@ -64,6 +64,13 @@ Application.Controllers.controller('DashboardController', ['$scope', 'memberProm
     };
 
     /**
+     * Callback used in case of error
+     */
+    $scope.onSuccess = function (message) {
+      growl.success(message);
+    };
+
+    /**
      * Callback used in PaymentScheduleDashboard, in case of error
      */
     $scope.onError = function (message) {

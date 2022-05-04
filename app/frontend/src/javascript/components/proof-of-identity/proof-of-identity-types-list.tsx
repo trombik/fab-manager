@@ -4,7 +4,6 @@ import { react2angular } from 'react2angular';
 import _ from 'lodash';
 import { HtmlTranslate } from '../base/html-translate';
 import { Loader } from '../base/loader';
-import { User } from '../../models/user';
 import { IApplication } from '../../models/application';
 import { ProofOfIdentityType } from '../../models/proof-of-identity-type';
 import { Group } from '../../models/group';
@@ -16,13 +15,14 @@ import ProofOfIdentityTypeAPI from '../../api/proof-of-identity-type';
 declare const Application: IApplication;
 
 interface ProofOfIdentityTypesListProps {
-  currentUser: User,
+  onSuccess: (message: string) => void,
+  onError: (message: string) => void,
 }
 
 /**
  * This component shows a list of all payment schedules with their associated deadlines (aka. PaymentScheduleItem) and invoices
  */
-const ProofOfIdentityTypesList: React.FC<ProofOfIdentityTypesListProps> = ({ currentUser }) => {
+const ProofOfIdentityTypesList: React.FC<ProofOfIdentityTypesListProps> = ({ onSuccess, onError }) => {
   const { t } = useTranslation('admin');
 
   // list of displayed proof of identity type
@@ -67,10 +67,13 @@ const ProofOfIdentityTypesList: React.FC<ProofOfIdentityTypesListProps> = ({ cur
     setModalIsOpen(false);
   };
 
-  const saveProofOfIdentityTypeOnSuccess = (): void => {
+  const saveProofOfIdentityTypeOnSuccess = (message: string): void => {
     setModalIsOpen(false);
     ProofOfIdentityTypeAPI.index().then(pData => {
       setProofOfIdentityTypes(orderProofOfIdentityTypes(pData, proofOfIdentityTypeOrder));
+      onSuccess(message);
+    }).catch((error) => {
+      onError('Unable to load proof of identity types' + error);
     });
   };
 
@@ -85,11 +88,14 @@ const ProofOfIdentityTypesList: React.FC<ProofOfIdentityTypesListProps> = ({ cur
     setDestroyModalIsOpen(false);
   };
 
-  const destroyProofOfIdentityTypeOnSuccess = (): void => {
+  const destroyProofOfIdentityTypeOnSuccess = (message: string): void => {
     setDestroyModalIsOpen(false);
     ProofOfIdentityTypeAPI.index().then(pData => {
       setProofOfIdentityTypes(pData);
       setProofOfIdentityTypes(orderProofOfIdentityTypes(pData, proofOfIdentityTypeOrder));
+      onSuccess(message);
+    }).catch((error) => {
+      onError('Unable to load proof of identity types' + error);
     });
   };
 
@@ -155,8 +161,8 @@ const ProofOfIdentityTypesList: React.FC<ProofOfIdentityTypesListProps> = ({ cur
           <button name="button" className="btn btn-warning pull-right m-t m-r-md" onClick={addProofOfIdentityType}>{t('app.admin.settings.compte.add_proof_of_identity_type_button')}</button>
         </div>
 
-        <ProofOfIdentityTypeModal isOpen={modalIsOpen} groups={groups} proofOfIdentityType={proofOfIdentityType} toggleModal={toggleCreateAndEditModal} onSuccess={saveProofOfIdentityTypeOnSuccess}/>
-        <DeleteProofOfIdentityTypeModal isOpen={destroyModalIsOpen} proofOfIdentityTypeId={proofOfIdentityTypeId} toggleModal={toggleDestroyModal} onSuccess={destroyProofOfIdentityTypeOnSuccess}/>
+        <ProofOfIdentityTypeModal isOpen={modalIsOpen} groups={groups} proofOfIdentityType={proofOfIdentityType} toggleModal={toggleCreateAndEditModal} onSuccess={saveProofOfIdentityTypeOnSuccess} onError={onError} />
+        <DeleteProofOfIdentityTypeModal isOpen={destroyModalIsOpen} proofOfIdentityTypeId={proofOfIdentityTypeId} toggleModal={toggleDestroyModal} onSuccess={destroyProofOfIdentityTypeOnSuccess} onError={onError}/>
 
         <table className="table proof-of-identity-type-list">
           <thead>
@@ -197,12 +203,12 @@ const ProofOfIdentityTypesList: React.FC<ProofOfIdentityTypesListProps> = ({ cur
   );
 };
 
-const ProofOfIdentityTypesListWrapper: React.FC<ProofOfIdentityTypesListProps> = ({ currentUser }) => {
+const ProofOfIdentityTypesListWrapper: React.FC<ProofOfIdentityTypesListProps> = ({ onSuccess, onError }) => {
   return (
     <Loader>
-      <ProofOfIdentityTypesList currentUser={currentUser} />
+      <ProofOfIdentityTypesList onSuccess={onSuccess} onError={onError} />
     </Loader>
   );
 };
 
-Application.Components.component('proofOfIdentityTypesList', react2angular(ProofOfIdentityTypesListWrapper, ['currentUser']));
+Application.Components.component('proofOfIdentityTypesList', react2angular(ProofOfIdentityTypesListWrapper, ['onSuccess', 'onError']));

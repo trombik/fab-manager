@@ -977,6 +977,10 @@ fr:
         invalidate_member_success: "Le membre est invalidé"
         validate_member_error: "Une error est survenue : impossible de valider de ce membre."
         invalidate_member_error: "Une error est survenue : impossible d'invalider de ce membre."
+        proof_of_identity_refusal_successfully_sent: "Refus du justificatif a bien été envoyé."
+        proof_of_identity_refusal_unable_to_send: "Impossible refuser des justificatifs : "
+        proof_of_identity_files_successfully_uploaded: "Le justificatif a bien été envoyé."
+        proof_of_identity_files_unable_to_upload: "Impossible d'envoyer le justificatif : "
       #extend a subscription for free
       free_extend_modal:
         extend_subscription: "Prolonger l'abonnement"
@@ -1404,6 +1408,12 @@ fr:
           confirm: "Valider"
           confirmation_required: "Confirmation requise"
           do_you_really_want_to_delete_this_proof_of_identity_type: "Voulez vous vraiment supprimer ce justificatif ?"
+          proof_of_identity_type_successfully_created: "Le nouveau justificatif a bien été créé."
+          proof_of_identity_type_unable_to_create: "Impossible de supprimer le justificatif : "
+          proof_of_identity_type_successfully_updated: "Le justificatif a bien été mis à jour."
+          proof_of_identity_type_unable_to_update: "Impossible de modifier le justificatif : "
+          proof_of_identity_type_deleted: "Le justificatif a été bien supprimé."
+          proof_of_identity_type_unable_to_delete: "Impossible de supprimer le justificatif : "
         home:
           show_upcoming_events: "Afficher les prochains événements"
           upcoming_events:

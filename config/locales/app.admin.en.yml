@@ -959,6 +959,7 @@ en:
         cannot_extend_own_subscription: "You cannot extend your own subscription. Please ask another manager or an administrator to extend your subscription."
         my_documents: "My documents"
         my_documents_info: "Following the declaration of your profile, you must declare the proof of identity documents. Once submitted, these documents will be verified by the administrator."
+        proof_of_identity_file_size_error: "The weight limit is 5 MB max"
         my_documents_alert: "Attention!</br>You can submit your documents in pdf or in image (jpg) under a weight limit of 5 Mb max"
         proof_of_identity_files: "Proof of identity"
         find_below_the_proof_of_identity_files: "You will find below the proof of identity documents submitted by the member."
@@ -971,10 +972,15 @@ en:
         cancel: "Cancel"
         proof_of_identity_refusal_comment: "Comment"
         proof_of_identity_refuse_input_message: "Type your text"
+        validate_account: "Validate the account"
         validate_member_success: "The member is validated"
         invalidate_member_success: "The member is invalidated"
         validate_member_error: "An error occurred: impossible to validate from this member."
         invalidate_member_error: "An error occurred: impossible to invalidate from this member."
+        proof_of_identity_refusal_successfully_sent: "Refusal of the proof of identity has been sent."
+        proof_of_identity_refusal_unable_to_send: "Impossible to refuse proof of identity : "
+        proof_of_identity_files_successfully_uploaded: "The proof of identity has been sent."
+        proof_of_identity_files_unable_to_upload: "Impossible to send proof of identity : "
       # extend a subscription for free
       free_extend_modal:
         extend_subscription: "Extend the subscription"
@@ -1402,6 +1408,12 @@ en:
           confirm: "Confirm"
           confirmation_required: "Confirmation required"
           do_you_really_want_to_delete_this_proof_of_identity_type: "Do you really want to remove this proof of identity ?"
+          proof_of_identity_type_successfully_created: "The new proof of identity has been created."
+          proof_of_identity_type_unable_to_create: "Unable to delete the proof of identity : "
+          proof_of_identity_type_successfully_updated: "The proof of identity has been updated."
+          proof_of_identity_type_unable_to_update: "Unable to modify the proof of identity : "
+          proof_of_identity_type_deleted: "The proof of identity has been deleted."
+          proof_of_identity_type_unable_to_delete: "Unable to delete the proof of identity : "
         home:
           show_upcoming_events: "Show upcoming events"
           upcoming_events:

@@ -9,12 +9,13 @@ import { ProofOfIdentityTypeForm } from './proof-of-identity-type-form';
 interface ProofOfIdentityTypeModalProps {
   isOpen: boolean,
   toggleModal: () => void,
-  onSuccess: () => void,
+  onSuccess: (message: string) => void,
+  onError: (message: string) => void,
   groups: Array<Group>,
   proofOfIdentityType?: ProofOfIdentityType,
 }
 
-export const ProofOfIdentityTypeModal: React.FC<ProofOfIdentityTypeModalProps> = ({ isOpen, toggleModal, onSuccess, proofOfIdentityType, groups }) => {
+export const ProofOfIdentityTypeModal: React.FC<ProofOfIdentityTypeModalProps> = ({ isOpen, toggleModal, onSuccess, onError, proofOfIdentityType, groups }) => {
   const { t } = useTranslation('admin');
 
   const [data, setData] = useState<ProofOfIdentityType>({ id: proofOfIdentityType?.id, group_ids: proofOfIdentityType?.group_ids || [], name: proofOfIdentityType?.name || '' });
@@ -34,11 +35,17 @@ export const ProofOfIdentityTypeModal: React.FC<ProofOfIdentityTypeModalProps> =
     try {
       if (proofOfIdentityType?.id) {
         await ProofOfIdentityTypeAPI.update(data);
+        onSuccess(t('app.admin.settings.compte.proof_of_identity_type_successfully_updated'));
       } else {
         await ProofOfIdentityTypeAPI.create(data);
+        onSuccess(t('app.admin.settings.compte.proof_of_identity_type_successfully_created'));
       }
-      onSuccess();
     } catch (e) {
+      if (proofOfIdentityType?.id) {
+        onError(t('app.admin.settings.compte.proof_of_identity_type_unable_to_update') + e);
+      } else {
+        onError(t('app.admin.settings.compte.proof_of_identity_type_unable_to_create') + e);
+      }
     }
   };
 

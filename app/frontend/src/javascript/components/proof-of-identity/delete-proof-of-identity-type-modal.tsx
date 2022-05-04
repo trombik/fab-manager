@@ -7,17 +7,19 @@ interface DeleteProofOfIdentityTypeModalProps {
   isOpen: boolean,
   proofOfIdentityTypeId: number,
   toggleModal: () => void,
-  onSuccess: () => void,
+  onSuccess: (message: string) => void,
+  onError: (message: string) => void,
 }
 
-export const DeleteProofOfIdentityTypeModal: React.FC<DeleteProofOfIdentityTypeModalProps> = ({ isOpen, toggleModal, onSuccess, proofOfIdentityTypeId }) => {
+export const DeleteProofOfIdentityTypeModal: React.FC<DeleteProofOfIdentityTypeModalProps> = ({ isOpen, toggleModal, onSuccess, proofOfIdentityTypeId, onError }) => {
   const { t } = useTranslation('admin');
 
   const handleDeleteProofOfIdentityType = async (): Promise<void> => {
     try {
       await ProofOfIdentityTypeAPI.destroy(proofOfIdentityTypeId);
-      onSuccess();
+      onSuccess(t('app.admin.settings.compte.proof_of_identity_type_deleted'));
     } catch (e) {
+      onError(t('app.admin.settings.compte.proof_of_identity_type_unable_to_delete') + e);
     }
   };
 

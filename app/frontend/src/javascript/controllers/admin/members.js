@@ -822,6 +822,13 @@ Application.Controllers.controller('EditMemberController', ['$scope', '$state', 
       growl.error(message);
     };
 
+    /**
+     * Callback triggered in case of success
+     */
+    $scope.onSuccess = (message) => {
+      growl.success(message);
+    };
+
     $scope.createWalletCreditModal = function (user, wallet) {
       const modalInstance = $uibModal.open({
         animation: true,

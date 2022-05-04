@@ -15,12 +15,14 @@ declare const Application: IApplication;
 
 interface ProofOfIdentityFilesProps {
   currentUser: User,
+  onSuccess: (message: string) => void,
+  onError: (message: string) => void,
 }
 
 /**
  * This component upload the proof of identity file of member
  */
-const ProofOfIdentityFiles: React.FC<ProofOfIdentityFilesProps> = ({ currentUser }) => {
+const ProofOfIdentityFiles: React.FC<ProofOfIdentityFilesProps> = ({ currentUser, onSuccess, onError }) => {
   const { t } = useTranslation('admin');
 
   // list of proof of identity type
@@ -98,10 +100,11 @@ const ProofOfIdentityFiles: React.FC<ProofOfIdentityFilesProps> = ({ currentUser
         ProofOfIdentityFileAPI.index({ user_id: currentUser.id }).then(fData => {
           setProofOfIdentityFiles(fData);
           setFiles({});
+          onSuccess(t('app.admin.members_edit.proof_of_identity_files_successfully_uploaded'));
         });
       }
     } catch (e) {
-      console.log(e);
+      onError(t('app.admin.members_edit.proof_of_identity_files_unable_to_upload') + e);
     }
   };
 
@@ -157,12 +160,12 @@ const ProofOfIdentityFiles: React.FC<ProofOfIdentityFilesProps> = ({ currentUser
   );
 };
 
-const ProofOfIdentityFilesWrapper: React.FC<ProofOfIdentityFilesProps> = ({ currentUser }) => {
+const ProofOfIdentityFilesWrapper: React.FC<ProofOfIdentityFilesProps> = ({ currentUser, onSuccess, onError }) => {
   return (
     <Loader>
-      <ProofOfIdentityFiles currentUser={currentUser} />
+      <ProofOfIdentityFiles currentUser={currentUser} onSuccess={onSuccess} onError={onError} />
     </Loader>
   );
 };
 
-Application.Components.component('proofOfIdentityFiles', react2angular(ProofOfIdentityFilesWrapper, ['currentUser']));
+Application.Components.component('proofOfIdentityFiles', react2angular(ProofOfIdentityFilesWrapper, ['currentUser', 'onSuccess', 'onError']));

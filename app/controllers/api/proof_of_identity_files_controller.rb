@@ -35,7 +35,7 @@ class API::ProofOfIdentityFilesController < API::ApiController
   # GET /api/proof_of_identity_files/1/download
   def download
     authorize @proof_of_identity_file
-    send_file @proof_of_identity_file.attachment.url, type: 'application/pdf', disposition: 'attachment'
+    send_file @proof_of_identity_file.attachment.url, type: @proof_of_identity_file.attachment.content_type, disposition: 'attachment'
   end
 
   # GET /api/proof_of_identity_files/1/

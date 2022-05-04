@@ -65,7 +65,11 @@
         </uib-tab>
 
         <uib-tab heading="{{ 'app.admin.members_edit.proof_of_identity_files' | translate }}">
-          <proof-of-identity-validation operator="currentUser" member="user" />
+          <proof-of-identity-validation
+            operator="currentUser"
+            member="user"
+            on-error="onError"
+            on-success="onSuccess" />
         </uib-tab>
 
         <uib-tab heading="{{ 'app.admin.members_edit.subscription' | translate }}" ng-if="$root.modules.plans">
