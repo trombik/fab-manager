@@ -160,6 +160,9 @@ Application.Controllers.controller('AdminMembersController', ['$scope', '$sce', 
     // admins list
     $scope.admins = adminsPromise.admins.filter(function (m) { return m.id !== Fablab.adminSysId; });
 
+    // is user validation required
+    $scope.enableUserValidationRequired = (settingsPromise.user_validation_required === 'true');
+
     // Admins ordering/sorting. Default: not sorted
     $scope.orderAdmin = null;
 
@@ -651,8 +654,8 @@ Application.Controllers.controller('AdminMembersController', ['$scope', '$sce', 
 /**
  * Controller used in the member edition page
  */
-Application.Controllers.controller('EditMemberController', ['$scope', '$state', '$transition$', 'Member', 'Training', 'dialogs', 'growl', 'Group', 'Subscription', 'CSRF', 'memberPromise', 'tagsPromise', '$uibModal', 'Plan', '$filter', '_t', 'walletPromise', 'transactionsPromise', 'activeProviderPromise', 'Wallet', 'settingsPromise',
-  function ($scope, $state, $transition$, Member, Training, dialogs, growl, Group, Subscription, CSRF, memberPromise, tagsPromise, $uibModal, Plan, $filter, _t, walletPromise, transactionsPromise, activeProviderPromise, Wallet, settingsPromise) {
+Application.Controllers.controller('EditMemberController', ['$scope', '$state', '$transition$', 'Member', 'Training', 'dialogs', 'growl', 'Group', 'Subscription', 'CSRF', 'memberPromise', 'tagsPromise', '$uibModal', 'Plan', '$filter', '_t', 'walletPromise', 'transactionsPromise', 'activeProviderPromise', 'Wallet', 'settingsPromise', 'ProofOfIdentityType',
+  function ($scope, $state, $transition$, Member, Training, dialogs, growl, Group, Subscription, CSRF, memberPromise, tagsPromise, $uibModal, Plan, $filter, _t, walletPromise, transactionsPromise, activeProviderPromise, Wallet, settingsPromise, ProofOfIdentityType) {
   /* PUBLIC SCOPE */
 
     // API URL where the form will be posted
@@ -675,6 +678,9 @@ Application.Controllers.controller('EditMemberController', ['$scope', '$state', 
 
     // is the address required in _member_form?
     $scope.addressRequired = (settingsPromise.address_required === 'true');
+
+    // is user validation required
+    $scope.enableUserValidationRequired = (settingsPromise.user_validation_required === 'true');
 
     // the user subscription
     if (($scope.user.subscribed_plan != null) && ($scope.user.subscription != null)) {
@@ -925,6 +931,10 @@ Application.Controllers.controller('EditMemberController', ['$scope', '$state', 
           });
         });
       }
+
+      ProofOfIdentityType.query({ group_id: $scope.user.group_id }, function (proofOfIdentityTypes) {
+        $scope.hasProofOfIdentityTypes = proofOfIdentityTypes.length > 0;
+      });
 
       // Using the MembersController
       return new MembersController($scope, $state, Group, Training);

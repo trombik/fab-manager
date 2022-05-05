@@ -37,7 +37,7 @@
   <table class="table members-list">
     <thead>
     <tr>
-      <th style="width:4%" class="hidden-xs"></th>
+      <th style="width:4%" class="hidden-xs" ng-if="enableUserValidationRequired"></th>
       <th style="width:15%"><a ng-click="setOrderMember('last_name')">{{ 'app.admin.members.surname' | translate }} <i class="fa fa-arrows-v" ng-class="{'fa fa-sort-alpha-asc': member.order=='last_name', 'fa fa-sort-alpha-desc': member.order=='-last_name', 'fa fa-arrows-v': member.order }"></i></a></th>
       <th style="width:15%"><a ng-click="setOrderMember('first_name')">{{ 'app.admin.members.first_name' | translate }} <i class="fa fa-arrows-v" ng-class="{'fa fa-sort-alpha-asc': member.order=='first_name', 'fa fa-sort-alpha-desc': member.order=='-first_name', 'fa fa-arrows-v': member.order }"></i></a></th>
       <th style="width:15%" class="hidden-xs"><a ng-click="setOrderMember('email')">{{ 'app.admin.members.email' | translate }} <i class="fa fa-arrows-v" ng-class="{'fa fa-sort-alpha-asc': member.order=='email', 'fa fa-sort-alpha-desc': member.order=='-email', 'fa fa-arrows-v': member.order }"></i></a></th>
@@ -49,7 +49,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="m in members">
-      <td class="text-center">
+      <td class="text-center" ng-if="enableUserValidationRequired">
         <span ng-class="{ 'text-success': !!m.validated_at }"><i class="fa fa-user-check"></i></span>
       </td>
       <td class="text-c">{{ m.profile.last_name }}</td>
