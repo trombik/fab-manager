@@ -40,9 +40,7 @@ class SettingPolicy < ApplicationPolicy
        recaptcha_site_key feature_tour_display disqus_shortname allowed_cad_extensions openlab_app_id openlab_default
        online_payment_module stripe_public_key confirmation_required wallet_module trainings_module address_required
        payment_gateway payzen_endpoint payzen_public_key public_agenda_module renew_pack_threshold statistics_module
-       pack_only_for_subscription overlapping_categories public_registrations user_validation_required user_validation_required_list
-       user_validation_required_machine user_validation_required_training user_validation_required_subscription
-       user_validation_required_event user_validation_required_space user_validation_required_pack]
+       pack_only_for_subscription overlapping_categories public_registrations user_validation_required user_validation_required_list]
   end
 
   ##

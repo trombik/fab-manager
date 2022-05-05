@@ -887,6 +887,10 @@ Setting.set('payment_schedule_prefix', 'FabManager_paymentSchedule') unless Sett
 
 Setting.set('confirmation_required', false) unless Setting.find_by(name: 'confirmation_required').try(:value)
 
+Setting.set('user_validation_required', false) unless Setting.find_by(name: 'user_validation_required').try(:value)
+
+Setting.set('user_validation_required_list', '') unless Setting.find_by(name: 'user_validation_required_list').try(:value)
+
 Setting.set('wallet_module', true) unless Setting.find_by(name: 'wallet_module').try(:value)
 
 Setting.set('statistics_module', true) unless Setting.find_by(name: 'statistics_module').try(:value)
