@@ -1373,6 +1373,7 @@ en:
           enable_statistics: "Enable statistics"
         compte:
           compte: "Compte"
+          customize_account_settings: "Customize account settings"
           user_validation_required: "validation of accounts"
           user_validation_required_title: "Validation of accounts"
           user_validation_required_info: "By activating this option, only members whose account is validated by an administrator or a manager will be able to make reservations."
