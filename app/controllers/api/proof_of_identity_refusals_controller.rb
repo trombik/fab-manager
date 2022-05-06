@@ -16,7 +16,7 @@ class API::ProofOfIdentityRefusalsController < API::ApiController
   def create
     authorize ProofOfIdentityRefusal
     @proof_of_identity_refusal = ProofOfIdentityRefusal.new(proof_of_identity_refusal_params)
-    if @proof_of_identity_refusal.save
+    if ProofOfIdentityRefusalService.create(@proof_of_identity_refusal)
       render :show, status: :created, location: @proof_of_identity_refusal
     else
       render json: @proof_of_identity_refusal.errors, status: :unprocessable_entity
