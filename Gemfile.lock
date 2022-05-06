@@ -293,6 +293,8 @@ GEM
       ttfunk (~> 1.5)
     prawn-table (0.2.2)
       prawn (>= 1.3.0, < 3.0.0)
+    psych (4.0.3)
+      stringio
     public_suffix (4.0.6)
     puma (4.3.12)
       nio4r (~> 2.0)
@@ -349,6 +351,8 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rb-readline (0.5.5)
+    rdoc (6.4.0)
+      psych (>= 4.0.0)
     recurrence (1.3.0)
       activesupport
       i18n
@@ -420,6 +424,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     ssrf_filter (1.0.7)
+    stringio (3.0.1)
     stripe (5.29.0)
     swd (1.3.0)
       activesupport (>= 3)
@@ -533,6 +538,7 @@ DEPENDENCIES
   rails-observers
   rails_12factor
   rb-readline
+  rdoc
   recurrence
   repost
   responders (~> 2.0)

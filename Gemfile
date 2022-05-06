@@ -143,3 +143,6 @@ gem 'tzinfo-data'
 
 # compilation of dynamic stylesheets (home page & theme)
 gem 'sassc', '= 2.1.0'
+
+# see https://github.com/trombik/fab-manager/issues/1
+gem 'rdoc'
