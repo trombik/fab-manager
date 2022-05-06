@@ -91,7 +91,7 @@ const ProofOfIdentityValidation: React.FC<ProofOfIdentityValidationProps> = ({ o
           );
         })}
       </section>
-      {hasProofOfIdentityTypes() && (
+      {hasProofOfIdentityTypes() && !member.validated_at && (
         <section className="panel panel-default bg-light m-t-lg col-sm-12 col-md-12 col-lg-4">
           <h3>{t('app.admin.members_edit.refuse_proof_of_identity_files')}</h3>
           <p className="text-black">{t('app.admin.members_edit.refuse_proof_of_identity_files_info')}</p>

@@ -818,7 +818,11 @@ Application.Controllers.controller('EditMemberController', ['$scope', '$state', 
      */
     $scope.onValidateMemberSuccess = (_user, message) => {
       growl.success(message);
-      $scope.user = _user;
+      setTimeout(() => {
+        $scope.user = _user;
+        $scope.user.statistic_profile.birthday = moment(_user.statistic_profile.birthday).toDate();
+        $scope.$apply();
+      }, 50);
     };
 
     /**
